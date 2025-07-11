@@ -1,0 +1,74 @@
+Garuda AI Assistant Documentation
+
+What is Garuda AI Assistant?
+Garuda AI Assistant is a modern, multi-provider AI assistant built with Python that supports various LLM providers and Retrieval-Augmented Generation (RAG) capabilities. It is designed with a modular architecture and a user-friendly GUI interface.
+
+Key Features:
+
+1. Multi-Provider LLM Support
+Garuda supports multiple AI providers including:
+- OpenAI (GPT-4, GPT-3.5-turbo)
+- Anthropic (Claude 3 Opus, Sonnet, Haiku)
+- Ollama (Llama 3, Mistral, CodeLlama)
+- Hugging Face (Various models)
+
+The system includes automatic fallback mechanisms, so if your primary provider fails, it will automatically try alternative providers to ensure continuity of service.
+
+2. RAG (Retrieval-Augmented Generation)
+The RAG system allows you to upload documents and have the AI assistant use them as context for more accurate and informed responses. Supported document formats include:
+- PDF files (.pdf)
+- Text files (.txt)
+- Microsoft Word documents (.docx)
+
+The system automatically chunks documents into smaller segments and stores them in a vector database using ChromaDB with semantic embeddings.
+
+3. Modern Streamlit Interface
+The web-based interface provides:
+- Real-time chat with conversation history
+- Document upload and management
+- Provider and model selection
+- Parameter adjustment (temperature, max tokens)
+- RAG toggle functionality
+- Statistics and monitoring dashboard
+
+4. Conversation Management
+Garuda includes sophisticated conversation management with:
+- Ring buffer memory management
+- Session-based conversations
+- Context window optimization
+- Token counting and management
+
+Technical Architecture:
+
+The application follows a modular design pattern:
+
+Core Module:
+- agent.py: Main agent logic with conversation management
+- llm_integration.py: Multi-provider LLM integration with fallback
+- vector_manager.py: Vector database management for RAG
+
+GUI Module:
+- app.py: Main Streamlit application
+- interface.py: UI components and rendering functions
+
+Configuration:
+- config.yaml: Model and provider configurations
+- .env: Environment variables and API keys
+
+How to Use RAG:
+
+1. Upload Documents: Use the document manager to upload PDF, TXT, or DOCX files
+2. Process Documents: The system will automatically chunk and embed your documents
+3. Enable RAG: Toggle the "Use RAG" option in the chat interface
+4. Ask Questions: The AI will use your uploaded documents as context for responses
+
+Rate Limiting and Safety:
+Garuda includes built-in rate limiting to prevent API abuse and manage costs. The system tracks requests per minute and tokens per minute for each provider.
+
+Fallback System:
+If your primary provider (e.g., OpenAI) fails or reaches rate limits, Garuda will automatically try alternative providers in a configured order, ensuring your conversations continue smoothly.
+
+Vector Store Management:
+The vector database automatically manages document embeddings and provides efficient similarity search for relevant context retrieval during conversations.
+
+This makes Garuda AI Assistant ideal for both general conversations and document-based question answering, providing a comprehensive AI assistant solution. 
